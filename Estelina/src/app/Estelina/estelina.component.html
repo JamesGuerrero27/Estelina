@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="card" *ngIf ="!selectOrder;">
+        <div class="card-body">
+          <h1>Estelina</h1>
+          <table  class="table table-dark table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th>Nombre del Cliente</th>
+                <th>Platillo</th>
+                <th>Total a pagar</th>
+                <th>Entregado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let estelina of estelinaArr" [class.selected]="estelina === selectOrder" (click)="onSelect(estelina)">
+                <td>{{estelina.nombreDelCliente}}</td>
+                <td>{{estelina.platillo}}</td>
+                <td >{{estelina.totalAPagar}}</td>
+                <td >{{estelina.indicadorSiYaFueEntregado}}</td>
+                <td><input type="checkbox"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div  *ngIf ="selectOrder;" class="card">
+          <div class="card-body"> 
+              <h1 class="card-title thead-dark text-center">Detalles</h1>
+              <div class="card-text">
+                      <h2>Nombre del cliente: 
+                        <span>{{selectOrder.nombreDelCliente}}</span></h2>
+                      <h2>Platillo:
+                        <span>{{selectOrder.platillo}}</span></h2>
+                      <h2>Total a Pagar:
+                       <span>{{selectOrder.totalAPagar}}</span></h2>
+                      <h2>Si ya fue entregado:
+                       <span>{{selectOrder.indicadorSiYaFueEntregado}}</span></h2>
+                      <button class="btn btn-primary" (click)="backToMenu();"> Volver al menu</button>
+                      
+              </div>
+          </div>
+      </div>
+</body>
+</html>
